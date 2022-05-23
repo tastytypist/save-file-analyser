@@ -48,6 +48,8 @@ class SaveAnalyser:
     def import_save_file(self):
         save_file = open(f"../test/{self.file}", "r")
         self.data = save_file.readlines()
+        self.data = [line.replace("\n", "") for line in self.data]
+        self.data = ["".join(self.data[:])]
         self.data = self.data[0]
         save_file.close()
 
