@@ -31,8 +31,11 @@ class StringFinder:
                     i -= 1
                     j -= 1
             else:
-                last_occur = self.last[ord(self.target[i].upper()) - 65]
-                i = i + string_length - min(j, last_occur + 1)
+                if 0 <= ord(self.target[i].upper()) - 65 <= 25:
+                    last_occur = self.last[ord(self.target[i].upper()) - 65]
+                    i = i + string_length - min(j, last_occur + 1)
+                else:
+                    i = i + string_length - j
                 j = string_length - 1
 
 
