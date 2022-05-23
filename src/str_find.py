@@ -6,12 +6,13 @@ class StringFinder:
     Reference: https://doi.org/10.1145/359842.359859
     """
     def __init__(self, string, target):
-        self.index = 0
-        self.last = [-1 for _ in range(26)]
+        self.index = -1
+        self.last = [-1 for _ in range(31)]
         self.string = string
         self.target = target
 
     def preprocess_string(self):
+        self.index = -1
         for i in range(len(self.string)):
             self.last[ord(self.string[i].upper()) - 65] = i
 
@@ -31,7 +32,7 @@ class StringFinder:
                     i -= 1
                     j -= 1
             else:
-                if 0 <= ord(self.target[i].upper()) - 65 <= 25:
+                if 0 <= ord(self.target[i].upper()) - 65 <= 30:
                     last_occur = self.last[ord(self.target[i].upper()) - 65]
                     i = i + string_length - min(j, last_occur + 1)
                 else:
